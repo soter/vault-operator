@@ -24,17 +24,18 @@ metadata:
   namespace: demo
 spec:
   replicas: 1
-  version: "1.0.1"
-  serviceTemplate:
+  version: "1.2.0"
+  serviceTemplates:
+  - alias: vault
+    metadata:
+      annotations:
+        name: vault
     spec:
       type: NodePort
   backend:
     consul:
       address: "http://my-service.demo.svc:8500"
       path: "vault"
-  configSource:
-    configMap:
-      name: extra-config
   unsealer:
     secretShares: 4
     secretThreshold: 2
